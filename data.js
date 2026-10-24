@@ -4,10 +4,9 @@
 
 const API_URL = 'https://script.google.com/macros/s/AKfycbo-Rzc4dDKUNYKAP2OZB7UAPrKRw1hx6p4gRMt0vHkMlbJdI7I5I8JnQ6evpzi9ywy/exec';
 
-// ── Carga los datos desde Google Sheets ──
 async function cargarDatos() {
   try {
-    const res = await fetch(API_URL);
+    const res = await fetch(API_URL, { redirect: 'follow' });
     const data = await res.json();
     return data;
   } catch (e) {
