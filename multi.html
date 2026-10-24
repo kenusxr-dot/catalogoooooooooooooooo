@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multiservicios — VaultStore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="catalog.css" />
+  <style>
+    :root {
+      --accent:  #f59e0b;
+      --accent2: #fbbf24;
+      --glow:    rgba(245,158,11,.2);
+      --chip-bg: rgba(245,158,11,.12);
+      --chip-bd: rgba(245,158,11,.3);
+      --chip-tx: #fcd34d;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-mark" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)">🚀</div>
+        <span class="logo-name" id="nav-nombre">Vault<span>Store</span></span>
+      </a>
+      <div class="nav-crumb">
+        <a href="index.html">Inicio</a><span>/</span><span class="crumb-active">🚀 Multiservicios</span>
+      </div>
+      <a href="#" id="nav-wsp" target="_blank" class="nav-contact"
+         style="background:linear-gradient(135deg,#f59e0b,#fbbf24);box-shadow:0 4px 16px rgba(245,158,11,.35);color:#1a1000">
+        Comprar ahora
+      </a>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-icon-wrap" style="background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.25)">
+        <span class="page-icon">🚀</span>
+      </div>
+      <div class="hero-cat-badge">🚀 Multiservicios</div>
+      <h1>Herramientas <em style="background:linear-gradient(135deg,#fbbf24,#f87171);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Esenciales</em></h1>
+      <p>Canva, ChatGPT, Adobe, Office y más para potenciar tu día a día.</p>
+      <div class="hero-mini-stats">
+        <div class="hero-mini-stat" id="hero-count"><strong>12</strong> productos</div>
+        <div class="hero-mini-sep"></div>
+        <div class="hero-mini-stat"><strong>⚡</strong> Entrega inmediata</div>
+        <div class="hero-mini-sep"></div>
+        <div class="hero-mini-stat"><strong>🛡️</strong> Garantía 30 días</div>
+      </div>
+    </div>
+    <div class="page-hero-bg" style="background:radial-gradient(ellipse at 50% -10%,rgba(245,158,11,.15) 0%,transparent 60%)"></div>
+  </section>
+
+  <section class="catalogo">
+    <div class="container">
+      <div class="product-grid" id="product-grid">
+        <div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:60px;font-size:14px;">
+          Cargando productos...
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <a href="index.html" class="back-home">← Volver al inicio</a>
+      <p>© 2026 VaultStore · Herramientas digitales premium</p>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="catalog.js"></script>
+  <script>
+    (async () => {
+      const data = await cargarDatos();
+      if (!data) return;
+      const cfg = parseConfig(data.CONFIG || []);
+      window._cfg = cfg;
+
+      if (cfg.whatsapp) document.getElementById('nav-wsp').href = 'https://wa.me/'+cfg.whatsapp;
+
+      const productos = (data.MULTI || []).filter(p => p.activo === 'SI');
+      document.querySelector('#hero-count strong').textContent = productos.length;
+
+      const grid = document.getElementById('product-grid');
+      grid.innerHTML = productos.map(p =>
+        renderCard(p, '#f59e0b', '#fbbf24', 'rgba(245,158,11,.2)',
+          'rgba(245,158,11,.12)', 'rgba(245,158,11,.3)', '#fcd34d')
+      ).join('') || '<p style="color:var(--muted);text-align:center;grid-column:1/-1;padding:40px">Sin productos disponibles.</p>';
+
+      grid.querySelectorAll('.pcard').forEach((c,i) => {
+        c.style.animation = `cardIn .45s ${i*0.06}s ease both`;
+      });
+    })();
+  </script>
+</body>
+</html>

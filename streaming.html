@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Streaming — VaultStore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="catalog.css" />
+  <style>
+    :root {
+      --accent:  #6366f1;
+      --accent2: #818cf8;
+      --glow:    rgba(99,102,241,.2);
+      --chip-bg: rgba(99,102,241,.12);
+      --chip-bd: rgba(99,102,241,.3);
+      --chip-tx: #a5b4fc;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">⚡</div>
+        <span class="logo-name" id="nav-nombre">Vault<span>Store</span></span>
+      </a>
+      <div class="nav-crumb">
+        <a href="index.html">Inicio</a><span>/</span><span class="crumb-active">📺 Streaming</span>
+      </div>
+      <a href="#" id="nav-wsp" target="_blank" class="nav-contact">Comprar ahora</a>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-icon-wrap">
+        <span class="page-icon">📺</span>
+      </div>
+      <div class="hero-cat-badge">📺 Streaming</div>
+      <h1>Cuentas de <em>Streaming</em></h1>
+      <p>Netflix, Disney+, HBO Max, Spotify y más. Recíbelo al instante.</p>
+      <div class="hero-mini-stats">
+        <div class="hero-mini-stat" id="hero-count"><strong>12</strong> productos</div>
+        <div class="hero-mini-sep"></div>
+        <div class="hero-mini-stat"><strong>⚡</strong> Entrega inmediata</div>
+        <div class="hero-mini-sep"></div>
+        <div class="hero-mini-stat"><strong>🛡️</strong> Garantía 30 días</div>
+      </div>
+    </div>
+    <div class="page-hero-bg"></div>
+  </section>
+
+  <section class="catalogo">
+    <div class="container">
+      <div class="product-grid" id="product-grid">
+        <div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:60px;font-size:14px;">
+          Cargando productos...
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <a href="index.html" class="back-home">← Volver al inicio</a>
+      <p id="footer-txt">© 2026 VaultStore · Entretenimiento digital premium</p>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="catalog.js"></script>
+  <script>
+    (async () => {
+      const data = await cargarDatos();
+      if (!data) {
+        document.getElementById('product-grid').innerHTML =
+          '<p style="color:var(--muted);text-align:center;grid-column:1/-1;padding:40px">Error al cargar productos. Recarga la página.</p>';
+        return;
+      }
+      const cfg = parseConfig(data.CONFIG || []);
+      window._cfg = cfg;
+
+      if (cfg.whatsapp) document.getElementById('nav-wsp').href = 'https://wa.me/'+cfg.whatsapp;
+
+      const productos = (data.STREAMING || []).filter(p => p.activo === 'SI');
+      document.querySelector('#hero-count strong').textContent = productos.length;
+
+      const grid = document.getElementById('product-grid');
+      grid.innerHTML = productos.map(p =>
+        renderCard(p, '#6366f1', '#818cf8', 'rgba(99,102,241,.2)',
+          'rgba(99,102,241,.12)', 'rgba(99,102,241,.3)', '#a5b4fc')
+      ).join('') || '<p style="color:var(--muted);text-align:center;grid-column:1/-1;padding:40px">Sin productos disponibles.</p>';
+
+      // re-animar cards
+      grid.querySelectorAll('.pcard').forEach((c,i) => {
+        c.style.animation = `cardIn .45s ${i*0.06}s ease both`;
+      });
+    })();
+  </script>
+</body>
+</html>
