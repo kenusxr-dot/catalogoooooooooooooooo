@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
+    res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=60');
     res.status(200).json(data);
   } catch (err) {
     res.status(500).json({ error: 'Error al conectar con Google Sheets', detail: err.message });
