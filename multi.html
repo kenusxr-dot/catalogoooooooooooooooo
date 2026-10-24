@@ -74,6 +74,9 @@
   <script src="data.js"></script>
   <script src="catalog.js"></script>
   <script>
+    // Skeletons inmediatos
+    document.getElementById('product-grid').innerHTML = renderSkeletons(6);
+
     (async () => {
       const data = await cargarDatos();
       if (!data) return;

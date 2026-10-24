@@ -415,8 +415,10 @@
 
     <!-- GRID DE CATEGORÍAS -->
     <div class="cat-grid" id="cat-grid">
-      <!-- cargado desde Google Sheets -->
-      <div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px;font-size:14px;">Cargando catálogo...</div>
+      <!-- skeletons mientras carga -->
+      <div class="cat-card streaming" style="opacity:.4;pointer-events:none;"><div class="cat-icon skeleton" style="width:72px;height:72px;border-radius:18px;margin-bottom:24px;"></div><div class="skeleton" style="height:18px;width:70%;margin-bottom:10px;border-radius:6px;"></div><div class="skeleton" style="height:12px;width:90%;border-radius:6px;"></div></div>
+      <div class="cat-card gaming"    style="opacity:.4;pointer-events:none;"><div class="cat-icon skeleton" style="width:72px;height:72px;border-radius:18px;margin-bottom:24px;"></div><div class="skeleton" style="height:18px;width:70%;margin-bottom:10px;border-radius:6px;"></div><div class="skeleton" style="height:12px;width:90%;border-radius:6px;"></div></div>
+      <div class="cat-card multi"     style="opacity:.4;pointer-events:none;"><div class="cat-icon skeleton" style="width:72px;height:72px;border-radius:18px;margin-bottom:24px;"></div><div class="skeleton" style="height:18px;width:70%;margin-bottom:10px;border-radius:6px;"></div><div class="skeleton" style="height:12px;width:90%;border-radius:6px;"></div></div>
     </div>
 
     <!-- STATS -->

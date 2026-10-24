@@ -54,9 +54,7 @@
   <section class="catalogo">
     <div class="container">
       <div class="product-grid" id="product-grid">
-        <div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:60px;font-size:14px;">
-          Cargando productos...
-        </div>
+        <!-- skeletons mientras carga -->
       </div>
     </div>
   </section>
@@ -71,6 +69,9 @@
   <script src="data.js"></script>
   <script src="catalog.js"></script>
   <script>
+    // Skeletons inmediatos
+    document.getElementById('product-grid').innerHTML = renderSkeletons(6);
+
     (async () => {
       const data = await cargarDatos();
       if (!data) {
@@ -86,7 +87,7 @@
       const productos = (data.STREAMING || []).filter(p => p.activo === 'SI');
       document.querySelector('#hero-count strong').textContent = productos.length;
 
-      const grid = document.getElementById('product-grid');
+        const grid = document.getElementById('product-grid');
       grid.innerHTML = productos.map(p =>
         renderCard(p, '#6366f1', '#818cf8', 'rgba(99,102,241,.2)',
           'rgba(99,102,241,.12)', 'rgba(99,102,241,.3)', '#a5b4fc')

@@ -1,0 +1,4 @@
+﻿activo,icono,titulo,descripcion,color,link,badge,boton_texto
+SI,📺,Streaming,"Netflix, Disney+, HBO Max y más",#6366f1,streaming.html,🔥 Popular,Ver catálogo
+SI,🎮,Recargas,Recargas de videojuegos al instante,#f97316,gaming.html,🎮 Gamer,Ver catálogo
+SI,🚀,Multiservicios,"Canva, ChatGPT, Adobe y más",#f59e0b,multi.html,⭐ Todo en 1,Ver catálogo

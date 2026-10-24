@@ -1,0 +1,13 @@
+﻿activo,nombre,tipo,descripcion,precio,precio_anterior,badge,imagen_url,stock,mensaje_wsp
+SI,Netflix,👑 Cuenta completa,"Acceso total a la cuenta. Series y películas en 4K UHD.",S/ 30,S/ 45,🔥 Top,,disponible,Hola! Quiero Netflix cuenta completa
+SI,Netflix,🔑 Perfil,Tu propio perfil dentro de una cuenta compartida. Historial privado.,S/ 11,S/ 16,,,disponible,Hola! Quiero Netflix perfil
+SI,Disney+,👑 Cuenta completa,"Marvel, Star Wars, Pixar y National Geographic.",S/ 26,S/ 39,,,disponible,Hola! Quiero Disney+ cuenta completa
+SI,Disney+,🔑 Perfil,Perfil propio en cuenta compartida. Mismo catálogo a menor precio.,S/ 11,S/ 16,,,disponible,Hola! Quiero Disney+ perfil
+SI,HBO Max,👑 Cuenta completa,"Game of Thrones, The Last of Us y cine de Warner.",S/ 26,S/ 39,,,disponible,Hola! Quiero HBO Max cuenta completa
+SI,HBO Max,🔑 Perfil,Perfil propio en cuenta compartida. Las mejores series a precio bajo.,S/ 9,S/ 13,,,disponible,Hola! Quiero HBO Max perfil
+SI,Spotify,👑 Cuenta completa,Música sin anuncios y descarga offline.,S/ 19,S/ 28,⚡ Disponible,,disponible,Hola! Quiero Spotify cuenta completa
+SI,Spotify,📨 Invitación familiar,Únete al plan familiar con tu correo. Premium completo.,S/ 9,S/ 13,,,disponible,Hola! Quiero Spotify invitacion familiar
+SI,Amazon Prime,👑 Cuenta completa,"The Boys, Rings of Power y beneficios Prime.",S/ 22,S/ 33,,,disponible,Hola! Quiero Amazon Prime cuenta completa
+SI,Amazon Prime,🔑 Perfil,Perfil propio en cuenta compartida. Mismas series a menor precio.,S/ 9,S/ 13,,,disponible,Hola! Quiero Amazon Prime perfil
+SI,Crunchyroll,👑 Cuenta completa,"Anime en simulcast. Dragon Ball, One Piece y más.",S/ 19,S/ 28,,,disponible,Hola! Quiero Crunchyroll cuenta completa
+SI,Crunchyroll,🔑 Perfil,Perfil propio en cuenta compartida. Todo el anime a precio económico.,S/ 7,S/ 10,,,disponible,Hola! Quiero Crunchyroll perfil

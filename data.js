@@ -98,3 +98,21 @@ function renderSectionTitle(titulo, count) {
       <span>${count} productos</span>
     </div>`;
 }
+
+// ── Genera N skeleton cards ──
+function renderSkeletons(n) {
+  return Array.from({ length: n }, () => `
+    <div class="skel-card">
+      <div class="skel-img skeleton"></div>
+      <div class="skel-body">
+        <div class="skel-title skeleton"></div>
+        <div class="skel-type skeleton"></div>
+        <div class="skel-desc skeleton"></div>
+        <div class="skel-desc2 skeleton"></div>
+        <div class="skel-foot">
+          <div class="skel-price skeleton"></div>
+          <div class="skel-btn skeleton"></div>
+        </div>
+      </div>
+    </div>`).join('');
+}

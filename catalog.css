@@ -326,3 +326,31 @@ a { text-decoration: none; color: inherit; }
   .hero-mini-stats { flex-wrap: wrap; justify-content: center; gap: 10px; padding: 10px 16px; }
   .hero-mini-sep { display: none; }
 }
+
+/* ── SKELETON LOADER ── */
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--surf2) 25%, var(--surf3) 50%, var(--surf2) 75%);
+  background-size: 600px 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: 8px;
+}
+.skel-card {
+  background: var(--surf2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.skel-img  { height: 120px; }
+.skel-body { padding: 14px 14px 12px; display:flex; flex-direction:column; gap:8px; }
+.skel-title{ height: 16px; width: 60%; }
+.skel-type { height: 12px; width: 40%; border-radius:100px; }
+.skel-desc { height: 11px; width: 90%; }
+.skel-desc2{ height: 11px; width: 70%; }
+.skel-foot { display:flex; justify-content:space-between; align-items:center; margin-top:10px; padding-top:10px; border-top:1px solid var(--border); }
+.skel-price{ height: 18px; width: 25%; }
+.skel-btn  { height: 32px; width: 80px; border-radius:9px; }

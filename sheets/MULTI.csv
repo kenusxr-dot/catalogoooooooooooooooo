@@ -1,0 +1,13 @@
+﻿activo,nombre,tipo,descripcion,precio,precio_anterior,badge,imagen_url,stock,mensaje_wsp
+SI,YouTube Premium,👑 Cuenta completa,"Sin anuncios, segundo plano y YouTube Music.",S/ 22,S/ 33,🔥 Top,,disponible,Hola! Quiero YouTube Premium cuenta completa
+SI,YouTube Premium,📨 Familiar,Únete al plan familiar con tu correo.,S/ 11,S/ 16,,,disponible,Hola! Quiero YouTube Premium familiar
+SI,Canva Pro,👑 Cuenta completa,Diseño profesional sin límites. Más de 100M de recursos.,S/ 30,S/ 45,,,disponible,Hola! Quiero Canva Pro cuenta completa
+SI,Canva Pro,🔑 Compartida,Mismas funciones Pro en cuenta compartida.,S/ 13,S/ 19,,,disponible,Hola! Quiero Canva Pro compartida
+SI,ChatGPT Plus,👑 Cuenta completa,"GPT-4o, DALL-E 3 y análisis avanzado.",S/ 52,S/ 75,🔥 Top,,disponible,Hola! Quiero ChatGPT Plus cuenta completa
+SI,ChatGPT Plus,🔑 Compartida,Acceso a GPT-4o en cuenta compartida.,S/ 22,S/ 33,,,disponible,Hola! Quiero ChatGPT Plus compartida
+SI,Microsoft 365,👑 Cuenta completa,"Word, Excel, PowerPoint y OneDrive 1TB.",S/ 26,S/ 39,,,disponible,Hola! Quiero Microsoft 365 cuenta completa
+SI,Microsoft 365,📨 Familiar,Únete al plan familiar con tu correo. Office completo.,S/ 13,S/ 19,,,disponible,Hola! Quiero Microsoft 365 familiar
+SI,Adobe Creative Cloud,👑 Cuenta completa,"Photoshop, Illustrator, Premiere y After Effects.",S/ 45,S/ 65,,,disponible,Hola! Quiero Adobe CC cuenta completa
+SI,Adobe Creative Cloud,🔑 Compartida,Toda la suite Adobe a precio reducido.,S/ 19,S/ 28,,,disponible,Hola! Quiero Adobe CC compartida
+SI,Duolingo Plus,👑 Cuenta completa,Sin anuncios y corazones ilimitados.,S/ 19,S/ 28,,,disponible,Hola! Quiero Duolingo Plus cuenta completa
+SI,Duolingo Plus,🔑 Compartida,Aprende idiomas sin límites a precio reducido.,S/ 9,S/ 13,,,disponible,Hola! Quiero Duolingo Plus compartida
