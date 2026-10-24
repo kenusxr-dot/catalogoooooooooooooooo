@@ -3,33 +3,21 @@
 ═══════════════════════════════════════════ */
 
 /* ═══════════════════════════════════════════
-   VaultStore — Conexión con Google Sheets API
+   VaultStore — Conexión con Google Sheets
+   via proxy Vercel (/api/sheets)
 ═══════════════════════════════════════════ */
 
-const API_URL = 'https://script.google.com/macros/s/AKfycbo-Rzc4dDKUNYKAP2OZB7UAPrKRw1hx6p4gRMt0vHkMlbJdI7I5I8JnQ6evpzi9ywy/exec';
+const API_URL = '/api/sheets';
 
-// ── Carga los datos via JSONP (evita CORS) ──
-function cargarDatos() {
-  return new Promise((resolve, reject) => {
-    const cbName = 'vsCallback_' + Date.now();
-    const script  = document.createElement('script');
-    const timeout = setTimeout(() => {
-      delete window[cbName];
-      document.body.removeChild(script);
-      reject(new Error('Timeout'));
-    }, 10000);
-
-    window[cbName] = (data) => {
-      clearTimeout(timeout);
-      delete window[cbName];
-      document.body.removeChild(script);
-      resolve(data);
-    };
-
-    script.src = API_URL + '?callback=' + cbName;
-    script.onerror = () => { clearTimeout(timeout); reject(new Error('Script error')); };
-    document.body.appendChild(script);
-  });
+async function cargarDatos() {
+  try {
+    const res = await fetch(API_URL);
+    const data = await res.json();
+    return data;
+  } catch (e) {
+    console.error('Error al cargar datos:', e);
+    return null;
+  }
 }
 
 // ── Lee CONFIG como objeto clave→valor ──
