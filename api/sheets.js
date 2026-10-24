@@ -1,7 +1,7 @@
 // Proxy serverless — Vercel llama a Google Sheets por detrás
 // El navegador llama a /api/sheets sin problemas de CORS
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbo-Rzc4dDKUNYKAP2OZB7UAPrKRw1hx6p4gRMt0vHkMlbJdI7I5I8JnQ6evpzi9ywy/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbweWM1TbYu7iQuxwQqbjNhOd-nqs2qbj1w9NKNme00Sfaz6XE3mdrpAzJCLuakWD_DR/exec';
 
 export default async function handler(req, res) {
   try {
