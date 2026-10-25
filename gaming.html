@@ -30,6 +30,8 @@
       padding:3px 10px; border-radius:100px;
     }
   </style>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#6366f1" />
 </head>
 <body>
 
@@ -69,6 +71,18 @@
     <div class="container" id="catalog-container">
       <div style="text-align:center;color:var(--muted);padding:60px;font-size:14px;">
         Cargando productos...
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="container">
+      <h2>❓ Preguntas frecuentes</h2>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q">¿Cómo recibo mi recarga? <span>+</span></button><div class="faq-a"><p>Solo necesitamos tu ID de jugador. La recarga se aplica en menos de 5 minutos tras confirmar el pago.</p></div></div>
+        <div class="faq-item"><button class="faq-q">¿Qué métodos de pago aceptan? <span>+</span></button><div class="faq-a"><p>Yape, Plin, transferencia bancaria y más. Consulta por WhatsApp.</p></div></div>
+        <div class="faq-item"><button class="faq-q">¿Necesito dar mi contraseña? <span>+</span></button><div class="faq-a"><p>No. Para recargas solo necesitamos tu ID de jugador, nunca tu contraseña.</p></div></div>
+        <div class="faq-item"><button class="faq-q">¿Tienen garantía? <span>+</span></button><div class="faq-a"><p>Sí. Si la recarga no se aplica correctamente la reponemos sin costo adicional.</p></div></div>
       </div>
     </div>
   </section>
@@ -126,5 +140,9 @@
       });
     })();
   </script>
-</body>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+  </script></body>
 </html>

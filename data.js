@@ -72,11 +72,10 @@ function renderCard(p, accentColor, accentColor2, glowColor, chipBg, chipBd, chi
     : `<a href="https://wa.me/${window._cfg?.whatsapp || '5491100000000'}?text=${encodeURIComponent(p.mensaje_wsp)}" target="_blank" class="pcard-buy">Comprar</a>`;
 
   return `
-    <div class="pcard">
+    <div class="pcard${p.stock === 'agotado' ? ' agotado' : ''}">
       <div class="pcard-img" style="background:linear-gradient(135deg,${accentColor}22,${accentColor2}33);position:relative;">
         ${imgContent}
         ${badge}
-        ${stockBadge}
       </div>
       <div class="pcard-body">
         <h3>${p.nombre}</h3>

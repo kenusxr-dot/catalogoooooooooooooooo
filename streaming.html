@@ -16,6 +16,8 @@
       --chip-tx: #a5b4fc;
     }
   </style>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#6366f1" />
 </head>
 <body>
 
@@ -55,6 +57,18 @@
     <div class="container">
       <div class="product-grid" id="product-grid">
         <!-- skeletons mientras carga -->
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="container">
+      <h2>❓ Preguntas frecuentes</h2>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q">¿Cómo recibo mi producto? <span>+</span></button><div class="faq-a"><p>Una vez confirmado tu pago te enviamos los datos por WhatsApp en menos de 5 minutos.</p></div></div>
+        <div class="faq-item"><button class="faq-q">¿Qué métodos de pago aceptan? <span>+</span></button><div class="faq-a"><p>Yape, Plin, transferencia bancaria y más. Consulta por WhatsApp.</p></div></div>
+        <div class="faq-item"><button class="faq-q">¿Qué garantía tienen? <span>+</span></button><div class="faq-a"><p>Garantía de 30 días. Si hay algún problema reponemos tu cuenta sin preguntas.</p></div></div>
+        <div class="faq-item"><button class="faq-q">¿Es seguro comprar? <span>+</span></button><div class="faq-a"><p>Sí. Más de 800 clientes satisfechos. Transacciones privadas y datos protegidos.</p></div></div>
       </div>
     </div>
   </section>
@@ -99,5 +113,9 @@
       });
     })();
   </script>
-</body>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+  </script></body>
 </html>
