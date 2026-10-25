@@ -381,6 +381,22 @@
   </style>
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#6366f1" />
+  <!-- SEO -->
+  <meta name="description" content="Streaming, recargas y multiservicios al mejor precio. Netflix, Free Fire, ChatGPT y más. Entrega inmediata y garantía 30 días." />
+  <meta name="keywords" content="cuentas streaming, recargas free fire, canva pro, chatgpt, netflix peru, usxr store" />
+  <meta name="robots" content="index, follow" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="USXR Store — Cuentas digitales premium" />
+  <meta property="og:description" content="Streaming, recargas y multiservicios al mejor precio. Netflix, Free Fire, ChatGPT y más. Entrega inmediata y garantía 30 días." />
+  <meta property="og:url" content="https://www.usxrdata.store" />
+  <meta property="og:image" content="https://i.ibb.co/hR6DW3mN/Logotipo-ne-n-futurista-USXR-Store.png" />
+  <meta property="og:site_name" content="USXR Store" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="USXR Store — Cuentas digitales premium" />
+  <meta name="twitter:description" content="Streaming, recargas y multiservicios al mejor precio. Netflix, Free Fire, ChatGPT y más. Entrega inmediata y garantía 30 días." />
+  <meta name="twitter:image" content="https://i.ibb.co/hR6DW3mN/Logotipo-ne-n-futurista-USXR-Store.png" />
 </head>
 <body>
 
@@ -504,10 +520,35 @@
   </footer>
 
   <script>
-    // Limpiar .html de la URL
-    if (window.location.pathname === '/index.html') {
-      window.history.replaceState(null, '', '/');
+    // ── Contador animado en stats ──
+    function animateCounter(el, target, suffix) {
+      const num = parseInt(target);
+      if (isNaN(num)) { el.textContent = target; return; }
+      let start = 0;
+      const step = Math.ceil(num / 40);
+      const timer = setInterval(() => {
+        start = Math.min(start + step, num);
+        el.textContent = start + suffix;
+        if (start >= num) clearInterval(timer);
+      }, 30);
     }
+
+    const observer2 = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.stat-n').forEach(el => {
+            const txt = el.textContent;
+            const suffix = txt.replace(/[0-9]/g, '');
+            animateCounter(el, txt, suffix);
+          });
+          observer2.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const statsEl = document.querySelector('.stats-row');
+    if (statsEl) observer2.observe(statsEl);
+
     // ── Partículas flotantes ──
     const container = document.getElementById('particles');
     const colors = ['#6366f1','#8b5cf6','#10b981','#f59e0b','#ec4899','#06b6d4'];
