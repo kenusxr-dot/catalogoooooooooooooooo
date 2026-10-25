@@ -80,7 +80,7 @@
       const cfg = parseConfig(data.CONFIG || []);
       window._cfg = cfg;
 
-      if (cfg.whatsapp) document.getElementById('nav-wsp').href = 'https://wa.me/'+cfg.whatsapp;
+      // nav-wsp reemplazado por boton fijo de grupo
 
       const productos = (data.MULTI || []).filter(p => p.activo === 'SI');
       document.querySelector('#hero-count strong').textContent = productos.length;
