@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/streaming",     "destination": "/streaming.html" },
+    { "source": "/recargas",      "destination": "/gaming.html" },
+    { "source": "/multiservicios","destination": "/multi.html" }
+  ]
+}
