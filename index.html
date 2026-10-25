@@ -529,7 +529,6 @@
       function update(now) {
         const elapsed = now - start;
         const progress = Math.min(elapsed / duration, 1);
-        // easing easeOutExpo
         const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
         el.textContent = Math.floor(eased * target) + suffix;
         if (progress < 1) requestAnimationFrame(update);
@@ -537,17 +536,10 @@
       requestAnimationFrame(update);
     }
 
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          document.querySelectorAll('.stat-n[data-target]').forEach(animateCounter);
-          statsObserver.disconnect();
-        }
-      });
-    }, { threshold: 0.5 });
-
-    const statsEl = document.getElementById('stats-row');
-    if (statsEl) statsObserver.observe(statsEl);
+    // Esperar a que el DOM cargue y arrancar
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.stat-n[data-target]').forEach(animateCounter);
+    });
 
     // ── Partículas flotantes ──
     const container = document.getElementById('particles');
