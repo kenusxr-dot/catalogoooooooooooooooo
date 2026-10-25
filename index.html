@@ -577,8 +577,11 @@
     })();
   </script>
   <script>
+    // Desregistrar SW viejo si existe
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(() => {});
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        regs.forEach(r => r.unregister());
+      });
     }
   </script></body>
 </html>
