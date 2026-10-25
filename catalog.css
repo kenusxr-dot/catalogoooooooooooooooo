@@ -239,7 +239,7 @@ a { text-decoration: none; color: inherit; }
   margin-top: auto;
 }
 .pcard-price {
-  font-size: 18px; font-weight: 900; color: var(--gold);
+  font-size: 15px; font-weight: 900; color: var(--gold);
   line-height: 1.2; letter-spacing: -.3px;
   display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
 }
