@@ -1,5 +1,5 @@
 // Service Worker — USXR Store PWA v2
-const CACHE = 'usxrstore-v2';
+const CACHE = 'usxrstore-v3';
 const STATIC = ['/', '/streaming', '/recargas', '/multiservicios',
   '/catalog.css', '/catalog.js', '/data.js'];
 
