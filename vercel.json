@@ -5,6 +5,9 @@
     { "source": "/multiservicios","destination": "/multi.html" }
   ],
   "redirects": [
-    { "source": "/index.html", "destination": "/", "permanent": true }
+    { "source": "/index.html",     "destination": "/",              "permanent": true },
+    { "source": "/streaming.html", "destination": "/streaming",     "permanent": true },
+    { "source": "/gaming.html",    "destination": "/recargas",      "permanent": true },
+    { "source": "/multi.html",     "destination": "/multiservicios","permanent": true }
   ]
 }
