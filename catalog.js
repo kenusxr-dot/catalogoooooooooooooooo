@@ -47,3 +47,17 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     if (!isOpen) item.classList.add('open');
   });
 });
+
+// ── Limpiar .html de la URL sin recargar ──
+(function cleanUrl() {
+  const path = window.location.pathname;
+  const map = {
+    '/streaming.html':  '/streaming',
+    '/gaming.html':     '/recargas',
+    '/multi.html':      '/multiservicios',
+    '/index.html':      '/'
+  };
+  if (map[path]) {
+    window.history.replaceState(null, '', map[path]);
+  }
+})();

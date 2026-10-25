@@ -504,6 +504,10 @@
   </footer>
 
   <script>
+    // Limpiar .html de la URL
+    if (window.location.pathname === '/index.html') {
+      window.history.replaceState(null, '', '/');
+    }
     // ── Partículas flotantes ──
     const container = document.getElementById('particles');
     const colors = ['#6366f1','#8b5cf6','#10b981','#f59e0b','#ec4899','#06b6d4'];
