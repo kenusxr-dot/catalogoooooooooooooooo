@@ -518,6 +518,24 @@
       });
       container.appendChild(p);
     }
+
+    // ── Prefetch silencioso: precarga la API mientras el usuario ve el landing ──
+    (function prefetch() {
+      try {
+        const cached = localStorage.getItem('vs_data');
+        if (cached) {
+          const { ts } = JSON.parse(cached);
+          if (Date.now() - ts < 30000) return; // ya está fresco
+        }
+        // Cargar en segundo plano sin bloquear nada
+        fetch('/api/sheets')
+          .then(r => r.json())
+          .then(data => {
+            localStorage.setItem('vs_data', JSON.stringify({ data, ts: Date.now() }));
+          })
+          .catch(() => {}); // silencioso
+      } catch(e) {}
+    })();
   </script>
 </body>
 </html>
