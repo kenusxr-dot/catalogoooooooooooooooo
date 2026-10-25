@@ -461,14 +461,14 @@
     </div>
 
     <!-- STATS — HTML PURO -->
-    <div class="stats-row">
-      <div class="stat"><div class="stat-n">800+</div><div class="stat-l">Clientes</div></div>
+    <div class="stats-row" id="stats-row">
+      <div class="stat"><div class="stat-n" data-target="800" data-suffix="+">0+</div><div class="stat-l">Clientes</div></div>
       <div class="stat-sep"></div>
-      <div class="stat"><div class="stat-n">30+</div><div class="stat-l">Servicios</div></div>
+      <div class="stat"><div class="stat-n" data-target="30" data-suffix="+">0+</div><div class="stat-l">Servicios</div></div>
       <div class="stat-sep"></div>
-      <div class="stat"><div class="stat-n">99%</div><div class="stat-l">Satisfacción</div></div>
+      <div class="stat"><div class="stat-n" data-target="99" data-suffix="%">0%</div><div class="stat-l">Satisfacción</div></div>
       <div class="stat-sep"></div>
-      <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">Soporte</div></div>
+      <div class="stat"><div class="stat-n" data-target="24" data-suffix="/7">0/7</div><div class="stat-l">Soporte</div></div>
     </div>
 
   </main>
@@ -521,33 +521,33 @@
 
   <script>
     // ── Contador animado en stats ──
-    function animateCounter(el, target, suffix) {
-      const num = parseInt(target);
-      if (isNaN(num)) { el.textContent = target; return; }
-      let start = 0;
-      const step = Math.ceil(num / 40);
-      const timer = setInterval(() => {
-        start = Math.min(start + step, num);
-        el.textContent = start + suffix;
-        if (start >= num) clearInterval(timer);
-      }, 30);
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1800;
+      const start = performance.now();
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // easing easeOutExpo
+        const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        el.textContent = Math.floor(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
     }
 
-    const observer2 = new IntersectionObserver((entries) => {
+    const statsObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          document.querySelectorAll('.stat-n').forEach(el => {
-            const txt = el.textContent;
-            const suffix = txt.replace(/[0-9]/g, '');
-            animateCounter(el, txt, suffix);
-          });
-          observer2.disconnect();
+          document.querySelectorAll('.stat-n[data-target]').forEach(animateCounter);
+          statsObserver.disconnect();
         }
       });
     }, { threshold: 0.5 });
 
-    const statsEl = document.querySelector('.stats-row');
-    if (statsEl) observer2.observe(statsEl);
+    const statsEl = document.getElementById('stats-row');
+    if (statsEl) statsObserver.observe(statsEl);
 
     // ── Partículas flotantes ──
     const container = document.getElementById('particles');
