@@ -413,16 +413,37 @@
       Streaming · Juegos · Herramientas — entrega inmediata y garantía incluida.
     </p>
 
-    <!-- GRID DE CATEGORÍAS -->
-    <div class="cat-grid" id="cat-grid">
-      <!-- skeletons mientras carga -->
-      <div class="cat-card streaming" style="opacity:.4;pointer-events:none;"><div class="cat-icon skeleton" style="width:72px;height:72px;border-radius:18px;margin-bottom:24px;"></div><div class="skeleton" style="height:18px;width:70%;margin-bottom:10px;border-radius:6px;"></div><div class="skeleton" style="height:12px;width:90%;border-radius:6px;"></div></div>
-      <div class="cat-card gaming"    style="opacity:.4;pointer-events:none;"><div class="cat-icon skeleton" style="width:72px;height:72px;border-radius:18px;margin-bottom:24px;"></div><div class="skeleton" style="height:18px;width:70%;margin-bottom:10px;border-radius:6px;"></div><div class="skeleton" style="height:12px;width:90%;border-radius:6px;"></div></div>
-      <div class="cat-card multi"     style="opacity:.4;pointer-events:none;"><div class="cat-icon skeleton" style="width:72px;height:72px;border-radius:18px;margin-bottom:24px;"></div><div class="skeleton" style="height:18px;width:70%;margin-bottom:10px;border-radius:6px;"></div><div class="skeleton" style="height:12px;width:90%;border-radius:6px;"></div></div>
+    <!-- GRID DE CATEGORÍAS — HTML PURO -->
+    <div class="cat-grid">
+
+      <a href="streaming.html" class="cat-card streaming">
+        <span class="cat-popular">🔥 Popular</span>
+        <div class="cat-icon">📺</div>
+        <div class="cat-title">Streaming</div>
+        <div class="cat-desc">Netflix, Disney+, HBO Max, Spotify y más.</div>
+        <div class="cat-btn">Ver catálogo <span class="arrow">→</span></div>
+      </a>
+
+      <a href="gaming.html" class="cat-card gaming">
+        <span class="cat-popular">🎮 Gamer</span>
+        <div class="cat-icon"><img src="https://i.ibb.co/NdYGqJf4/icon-1.png" style="width:100%;height:100%;object-fit:cover;border-radius:18px;"></div>
+        <div class="cat-title">Recargas</div>
+        <div class="cat-desc">Recargas de videojuegos al instante.</div>
+        <div class="cat-btn">Ver catálogo <span class="arrow">→</span></div>
+      </a>
+
+      <a href="multi.html" class="cat-card multi">
+        <span class="cat-popular">⭐ Todo en 1</span>
+        <div class="cat-icon">🚀</div>
+        <div class="cat-title">Multiservicios</div>
+        <div class="cat-desc">Canva, ChatGPT, Adobe y más.</div>
+        <div class="cat-btn">Ver catálogo <span class="arrow">→</span></div>
+      </a>
+
     </div>
 
-    <!-- STATS -->
-    <div class="stats-row" id="stats-row">
+    <!-- STATS — HTML PURO -->
+    <div class="stats-row">
       <div class="stat"><div class="stat-n">800+</div><div class="stat-l">Clientes</div></div>
       <div class="stat-sep"></div>
       <div class="stat"><div class="stat-n">30+</div><div class="stat-l">Servicios</div></div>
@@ -480,7 +501,6 @@
     <p>© 2026 VaultStore · <a href="https://wa.me/5491100000000" style="color:#6366f1">Contactar por WhatsApp</a></p>
   </footer>
 
-  <script src="data.js"></script>
   <script>
     // ── Partículas flotantes ──
     const container = document.getElementById('particles');
@@ -498,77 +518,6 @@
       });
       container.appendChild(p);
     }
-
-    // ── Cargar datos desde Google Sheets ──
-    (async () => {
-      const data = await cargarDatos();
-      if (!data) return;
-
-      const cfg = parseConfig(data.CONFIG || []);
-      window._cfg = cfg;
-
-      // Aplicar CONFIG al landing
-      if (cfg.nombre_tienda) {
-        document.querySelectorAll('.logo-name').forEach(el => {
-          const parts = cfg.nombre_tienda.match(/^(.+?)([A-Z][a-z]+)$/) || [null, cfg.nombre_tienda, ''];
-          el.innerHTML = parts[1] + '<span>' + parts[2] + '</span>';
-        });
-      }
-      if (cfg.hero_titulo_linea1 && cfg.hero_titulo_linea2) {
-        document.querySelector('.hero h1').innerHTML =
-          cfg.hero_titulo_linea1 + '<br/><em>' + cfg.hero_titulo_linea2 + '</em>';
-      }
-      if (cfg.hero_subtitulo) document.querySelector('.hero-sub').textContent = cfg.hero_subtitulo;
-
-      // Stats
-      const statsRow = document.getElementById('stats-row');
-      if (statsRow && cfg.stat1_numero) {
-        statsRow.innerHTML = [1,2,3,4].map((n,i) =>
-          (i > 0 ? '<div class="stat-sep"></div>' : '') +
-          `<div class="stat"><div class="stat-n">${cfg['stat'+n+'_numero']}</div><div class="stat-l">${cfg['stat'+n+'_texto']}</div></div>`
-        ).join('');
-      }
-
-      // Garantías
-      const gItems = document.querySelectorAll('.g-item');
-      [1,2,3,4].forEach((n,i) => {
-        if (gItems[i] && cfg['garantia'+n+'_titulo']) {
-          gItems[i].querySelector('.g-ico').textContent  = cfg['garantia'+n+'_icono'];
-          gItems[i].querySelector('strong').textContent  = cfg['garantia'+n+'_titulo'];
-          gItems[i].querySelector('p').textContent       = cfg['garantia'+n+'_texto'];
-        }
-      });
-
-      // Contacto WhatsApp
-      if (cfg.whatsapp) {
-        document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
-          a.href = a.href.replace(/wa\.me\/\d+/, 'wa.me/'+cfg.whatsapp);
-        });
-      }
-
-      // Landing cards desde LANDING
-      const landing = (data.LANDING || []).filter(r => r.activo === 'SI');
-      const catClases = ['streaming','gaming','multi'];
-      const catColors = [
-        { bg: cfg.color_streaming || '#6366f1', glow: 'rgba(99,102,241,.2)' },
-        { bg: cfg.color_recargas  || '#f97316', glow: 'rgba(249,115,22,.2)' },
-        { bg: cfg.color_multi     || '#f59e0b', glow: 'rgba(245,158,11,.2)' },
-      ];
-
-      const grid = document.getElementById('cat-grid');
-      grid.innerHTML = landing.map((item, i) => {
-        const cls   = catClases[i] || 'streaming';
-        const color = catColors[i] || catColors[0];
-        return `
-          <a href="${item.link}" class="cat-card ${cls}" style="--card-accent:${item.color || color.bg}">
-            <span class="cat-popular">${item.badge}</span>
-            <div class="cat-icon">${item.icono}</div>
-            <div class="cat-title">${item.titulo}</div>
-            <div class="cat-desc">${item.descripcion}</div>
-            <div class="cat-btn">${item.boton_texto} <span class="arrow">→</span></div>
-          </a>`;
-      }).join('');
-    })();
   </script>
 </body>
 </html>
