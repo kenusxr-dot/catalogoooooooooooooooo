@@ -60,7 +60,7 @@ function renderCard(p, accentColor, accentColor2, glowColor, chipBg, chipBd, chi
     : '';
 
   const imgContent = p.imagen_url
-    ? `<img src="${p.imagen_url}" alt="${p.nombre}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">`
+    ? `<img src="${p.imagen_url}" alt="${p.nombre}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">`
     : `<div style="width:72px;height:72px;border-radius:14px;background:${accentColor};display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;color:white;">${p.nombre.charAt(0)}</div>`;
 
   const stockBadge = p.stock === 'agotado'
