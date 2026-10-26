@@ -1,5 +1,5 @@
 // Proxy seguro de compra
-const WSP = process.env.WSP_NUMBER;
+const WSP = process.env.WSP_NUMBER || '51922055086';
 const ALLOWED_ORIGINS = ['https://www.usxrdata.store', 'https://usxrdata.store', 'https://usxrstore-eight.vercel.app'];
 
 export default async function handler(req, res) {
