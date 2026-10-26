@@ -1,9 +1,5 @@
 /* ═══════════════════════════════════════════
-   VaultStore — Conexión con Google Sheets API
-═══════════════════════════════════════════ */
-
-/* ═══════════════════════════════════════════
-   VaultStore — Conexión con Google Sheets
+   USXR Store — Conexión con Supabase
    via proxy Vercel (/api/sheets)
 ═══════════════════════════════════════════ */
 
@@ -76,6 +72,7 @@ function renderCard(p, accentColor, accentColor2, glowColor, chipBg, chipBd, chi
       <div class="pcard-img" style="background:linear-gradient(135deg,${accentColor}22,${accentColor2}33);position:relative;">
         ${imgContent}
         ${badge}
+        ${stockBadge}
       </div>
       <div class="pcard-body">
         <h3>${p.nombre}</h3>
