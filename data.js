@@ -69,7 +69,7 @@ function renderCard(p, accentColor, accentColor2, glowColor, chipBg, chipBd, chi
 
   const buyBtn = p.stock === 'agotado'
     ? `<span class="pcard-buy" style="opacity:.4;cursor:not-allowed;background:#374151;">Sin stock</span>`
-    : `<a href="/api/comprar?msg=${encodeURIComponent((p.mensaje_wsp || '').replace(/\\n/g, '\n'))}" target="_blank" class="pcard-buy">Comprar</a>`;
+    : `<a href="/api/comprar?msg=${encodeURIComponent((p.mensaje_wsp || '').replace(/\\n/g, '\n'))}" target="_blank" rel="noopener" onclick="window.open(this.href,'_blank');return false;" class="pcard-buy">Comprar</a>`;
 
   return `
     <div class="pcard${p.stock === 'agotado' ? ' agotado' : ''}">

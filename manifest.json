@@ -4,6 +4,7 @@
   "description": "Cuentas digitales premium — streaming, recargas y multiservicios",
   "start_url": "/",
   "display": "standalone",
+  "display_override": ["standalone", "browser"],
   "background_color": "#080c14",
   "theme_color": "#6366f1",
   "orientation": "portrait",
