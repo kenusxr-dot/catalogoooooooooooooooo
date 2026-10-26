@@ -1,23 +1,13 @@
-// Proxy seguro de Supabase
+// Proxy Supabase
 const SUPABASE_URL = 'https://zlkrcrgenppavmqhnxuh.supabase.co';
-const SUPABASE_KEY = process.env.SUPABASE_KEY || 'sb_publishable_4kXgQK2SUxKmBoQZGoKlhQ_KXTW8HNa';
-const ALLOWED_ORIGINS = ['https://www.usxrdata.store', 'https://usxrdata.store', 'https://usxrstore-eight.vercel.app'];
+const SUPABASE_KEY = 'sb_publishable_4kXgQK2SUxKmBoQZGoKlhQ_KXTW8HNa';
 
 export default async function handler(req, res) {
-  // 1. Solo GET
   if (req.method !== 'GET') return res.status(405).end();
 
-  // 2. Rate limit básico — header check
-  const ua = req.headers['user-agent'] || '';
-  if (!ua || ua.length < 5) return res.status(403).end(); // bloquear bots sin UA
-
-  // 3. Headers de seguridad
-  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('X-Frame-Options', 'DENY');
-  res.setHeader('X-Robots-Tag', 'noindex');
-  res.setHeader('Referrer-Policy', 'no-referrer');
-  res.setHeader('Access-Control-Allow-Origin', ALLOWED_ORIGINS.includes(req.headers.origin)
-    ? req.headers.origin : ALLOWED_ORIGINS[0]);
+  res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=60');
 
   try {
     const headers = {
@@ -34,10 +24,13 @@ export default async function handler(req, res) {
       fetch(`${SUPABASE_URL}/rest/v1/multi?select=*&order=id`, { headers }).then(r => r.json()),
     ]);
 
-    const data = { CONFIG: config, LANDING: landing, STREAMING: streaming, RECARGAS: recargas, MULTI: multi };
-
-    res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=60');
-    return res.status(200).json(data);
+    return res.status(200).json({
+      CONFIG: config,
+      LANDING: landing,
+      STREAMING: streaming,
+      RECARGAS: recargas,
+      MULTI: multi
+    });
   } catch (err) {
     return res.status(500).json({ error: 'Error interno' });
   }
