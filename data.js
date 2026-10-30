@@ -5,7 +5,7 @@
 
 const API_URL = '/api/sheets';
 const CACHE_KEY = 'vs_data';
-const CACHE_TTL = 30 * 1000; // 30 segundos
+const CACHE_TTL = 0; // sin caché — siempre datos frescos
 
 async function cargarDatos() {
   // 1. Intentar desde localStorage primero (instantáneo)
