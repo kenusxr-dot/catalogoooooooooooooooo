@@ -4,33 +4,16 @@
 ═══════════════════════════════════════════ */
 
 const API_URL = '/api/sheets';
-const CACHE_KEY = 'vs_data';
-const CACHE_TTL = 0; // sin caché — siempre datos frescos
 
 async function cargarDatos() {
-  // 1. Intentar desde localStorage primero (instantáneo)
-  try {
-    const cached = localStorage.getItem(CACHE_KEY);
-    if (cached) {
-      const { data, ts } = JSON.parse(cached);
-      if (Date.now() - ts < CACHE_TTL) {
-        // Datos frescos — usar y actualizar en segundo plano
-        fetchYGuardar(); // actualiza silenciosamente
-        return data;
-      }
-    }
-  } catch(e) {}
-
-  // 2. Si no hay caché, esperar la respuesta
   return await fetchYGuardar();
 }
 
 async function fetchYGuardar() {
   try {
-    const res  = await fetch(API_URL);
+    // Siempre fetch fresco — sin caché
+    const res = await fetch(API_URL + '?t=' + Date.now()); // cache buster
     const data = await res.json();
-    // Guardar en localStorage
-    localStorage.setItem(CACHE_KEY, JSON.stringify({ data, ts: Date.now() }));
     return data;
   } catch (e) {
     console.error('Error al cargar datos:', e);
