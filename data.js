@@ -3,18 +3,23 @@
    via proxy Vercel (/api/sheets)
 ═══════════════════════════════════════════ */
 
-const API_URL = '/api/sheets';
+const SUPABASE_URL = 'https://zlkrcrgenppavmqhnxuh.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_4kXgQK2SUxKmBoQZGoKlhQ_KXTW8HNa';
 
 async function cargarDatos() {
-  return await fetchYGuardar();
-}
-
-async function fetchYGuardar() {
   try {
-    // Siempre fetch fresco — sin caché
-    const res = await fetch(API_URL + '?t=' + Date.now()); // cache buster
-    const data = await res.json();
-    return data;
+    const headers = {
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${SUPABASE_KEY}`
+    };
+    const [config, landing, streaming, recargas, multi] = await Promise.all([
+      fetch(`${SUPABASE_URL}/rest/v1/config?select=*`, { headers }).then(r => r.json()),
+      fetch(`${SUPABASE_URL}/rest/v1/landing?select=*&order=id`, { headers }).then(r => r.json()),
+      fetch(`${SUPABASE_URL}/rest/v1/streaming?select=*&order=id`, { headers }).then(r => r.json()),
+      fetch(`${SUPABASE_URL}/rest/v1/recargas?select=*&order=id`, { headers }).then(r => r.json()),
+      fetch(`${SUPABASE_URL}/rest/v1/multi?select=*&order=id`, { headers }).then(r => r.json()),
+    ]);
+    return { CONFIG: config, LANDING: landing, STREAMING: streaming, RECARGAS: recargas, MULTI: multi };
   } catch (e) {
     console.error('Error al cargar datos:', e);
     return null;
